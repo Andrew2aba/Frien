@@ -7,13 +7,13 @@ import NavBar from './components/Navbar/NavBar'
 import ProfilePage from './pages/ProfilePage'
 
 function App() {
- 
+
 
   return (
     <Routes>
+      <Route path="/" element={<div>Home Page</div>} />
       <Route element={<NavBar />}>
-        <Route path="/" element={<div>Home Page</div>} />
-        <Route path='/Homepage' element={<LandingPage/>} />
+        <Route path='/home' element={<LandingPage />} />
       </Route>
       <Route path="/signup" element={<SignUpPage/>} />
       <Route path="/login" element={<LoginPage />} />

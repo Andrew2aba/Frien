@@ -39,6 +39,7 @@ export default function TopNavBar() {
                     <Button
                         key={page}
                         onClick={handleCloseNavMenu}
+                        href={page === 'Browse' ? '/home' : '/sell'}
                         sx={{ my: 2, color: 'white', display: 'block' }}
                     >
                         {page}

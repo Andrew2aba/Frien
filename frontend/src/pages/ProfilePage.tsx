@@ -2,7 +2,6 @@ import { Avatar, Button, Box, Typography, Stack } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import TopNavBar from "../components/TopNavBar";
-import disableGutters from "../components/TopNavBar";
 
 const stats = [
   { value: "4.9", label: "rating · 288 reviews", star: true },
@@ -14,10 +13,10 @@ const stats = [
 const ProfilePage = () => {
   return (
     <Box
-        
+
       sx={{ bgcolor: "background.default", minHeight: "100vh", color: "text.primary" }}>
-      <title>Profile Page</title>
-      
+
+
       <TopNavBar />
 
       {/* Identity block */}
