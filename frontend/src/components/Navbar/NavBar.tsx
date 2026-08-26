@@ -9,6 +9,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import NestedList from './NestList';
+import Button from '@mui/material/Button';
+import { Outlet } from 'react-router';
+import bondIcon from "../../assets/bond-icon.svg";
 
 const drawerWidth = 240;
 
@@ -18,14 +21,18 @@ interface Props {
    * Remove this when copying and pasting into your project.
    */
   window?: () => Window;
-  content: React.ReactNode;   
 }
+
+const pages = ['Browse', 'Sell', 'Dealers'];
 
 export default function NavBar(props: Props) {
   const { window } = props;
-  
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+
+  const [signUp, setSignUp] = React.useState(false);
+
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -36,17 +43,15 @@ export default function NavBar(props: Props) {
     setIsClosing(false);
   };
 
-  const handleDrawerToggle = () => {
-    if (!isClosing) {
-      setMobileOpen(!mobileOpen);
-    }
+  const handleCloseNavMenu = () => {
+    setMobileOpen(false);
   };
 
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
-       <NestedList />
+      <NestedList />
       <Divider />
     </div>
   );
@@ -62,21 +67,46 @@ export default function NavBar(props: Props) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          backgroundColor: '#1E1E1E', 
         }}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+        <Toolbar sx={{ alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <img src={bondIcon} alt="Bond Marketplace logo" style={{ height: '1.5rem', width: 'auto' }} />
+            <Typography variant="h6" component="span" sx={{ color: 'white', fontWeight: 'bold', lineHeight: 1 }}>
+              Bond Marketplace
+            </Typography>
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
+          <Button
+            size="medium"
+            href="/login"
+            variant="contained"
+            sx={{
+              borderRadius: '10px', // Adjust border radius for button shape
+              outlineColor: 'white', // Outline color
+              fontSize: '1rem', // Adjust font size
+              fontWeight: 'bold', // Adjust font weight
+              textDecorationColor: 'black', // Underline color
+              color: 'white', // Text color
+              pl: 2, // Adjust padding for horizontal positioning
+              pr: 2, // Adjust padding for right spacing
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Bond Market place
-          </Typography>
+            Sign in
+          </Button>
         </Toolbar>
       </AppBar>
       <Box
@@ -93,7 +123,11 @@ export default function NavBar(props: Props) {
           onClose={handleDrawerClose}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { 
+              boxSizing: 'border-box', 
+              width: drawerWidth, 
+              backgroundColor: '#121212', // Change background color here
+            },
           }}
           slotProps={{
             root: {
@@ -107,19 +141,24 @@ export default function NavBar(props: Props) {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { 
+              boxSizing: 'border-box', 
+              width: drawerWidth, 
+               // Change background color here
+            },
           }}
           open
         >
           {drawer}
         </Drawer>
-      </Box>
-      <Box
+            </Box>
+            <Box
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-      >
+            >
         <Toolbar />
-      </Box>
-    </Box>
-  );
-}
+        <Outlet />
+            </Box>
+          </Box>
+        );
+      }

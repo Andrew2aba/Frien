@@ -1,13 +1,27 @@
 import React from "react";
+import NavBar from "../components/Navbar/NavBar";
+import {useState, useEffect} from "react";
+import instance from "../components/Axios";
+
+
 
 const LandingPage = () => {
+    const [vhiechle, setVheicles] = useState([]);
+    
+    // fetch data from backend
+    const fetchData = () => {
+        instance.get('vheicles/').then((response) => {
+            setVheicles(response.data);
+        })
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
 
     return (
-        <div>
-            <h1>Welcome to the bond market place</h1>
-            <br />
-            <p>This is the landing page of our application.</p>
-        </div>
+        <div> hello world</div>
     )
 }
 

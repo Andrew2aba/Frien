@@ -24,10 +24,10 @@ import { LuDollarSign } from "react-icons/lu";
 
 
 export default function NestedList() {
-  const [open, setOpen] = React.useState(true);
-  const [openPrice, setOpenPrice] = React.useState(true);
-  const [openEngine, setOpenEngine] = React.useState(true);
-  const [openBodyType, setOpenBodyType] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [openPrice, setOpenPrice] = React.useState(false);
+  const [openEngine, setOpenEngine] = React.useState(false);
+  const [openBodyType, setOpenBodyType] = React.useState(false);
 
   const bodyTypes = [
     'Sedan',
@@ -127,11 +127,11 @@ export default function NestedList() {
 
       <Collapse in={openEngine} timeout="auto" unmountOnExit>
           <ListItem component="div" disablePadding sx={{ pl: 6 }}>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Automatic" />        
+            <FormControlLabel control={<Checkbox />} label="Automatic" />
           </ListItem>
 
           <ListItem component="div" disablePadding sx={{ pl: 6 }}>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Manuel" />        
+            <FormControlLabel control={<Checkbox />} label="Manuel" />
           </ListItem>
       </Collapse>
 
