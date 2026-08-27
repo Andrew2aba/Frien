@@ -18,6 +18,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { Build } from '@mui/icons-material';
 import ListItem from '@mui/material/ListItem';
 import { LuDollarSign } from "react-icons/lu";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 
 
@@ -158,6 +160,17 @@ export default function NestedList() {
         </List>
       </Collapse>
 
+      <Divider />
+      
+      <Box>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2, ml: 2, justifyContent: 'center', width: '80%' }}
+        >
+          Apply Filters
+        </Button>
+      </Box>
     </List>
   );
 }
