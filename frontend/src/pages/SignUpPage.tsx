@@ -6,7 +6,6 @@ import bondIcon2 from "../assets/bond-icon2.svg";
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import Input from "@mui/material/Input";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
