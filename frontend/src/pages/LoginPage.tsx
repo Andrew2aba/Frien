@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import blackcar from "../assets/blackcar.svg";
 import { TextField, Typography } from '@mui/material';
 import { Bold } from 'lucide-react';
+import instance from '../api/Axios';
 
 interface LoginFormState {
     email: string;
@@ -23,7 +24,29 @@ const LoginPage = () => {
     // Holds a message to show the user (validation failure or API error).
     const [error, setError] = useState<string | null>(null);
 
+    const handleFieldChange =
+            (field: keyof LoginFormState) =>
+                (event: React.ChangeEvent<HTMLInputElement>) => {
+                    setLoginInfo((prev) => ({ ...prev, [field]: event.target.value }));
+                };
+    
+    // handle login button
+    const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
 
+        event.preventDefault(); // stop the browser's default full-page form submit
+        setIsSubmitting(true);
+
+        try {
+            const response = await instance.post('auth/login/', {
+                email,
+                password
+            })
+        }
+        catch (error) {
+            console.error('Login failed:', error);
+            setError('Login failed. invalid password or email');
+        } 
+        }
 
     return (
         <Box sx={{ display: 'flex', gap: 2, height: '100vh', bgcolor: 'primary.main', justifyContent: 'center', alignItems: 'center' }}>
