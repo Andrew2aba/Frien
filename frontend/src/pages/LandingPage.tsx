@@ -1,7 +1,7 @@
 import React from "react";
 import ListingCard from "../components/listingCard";
 import { useState, useEffect } from "react";
-import instance from "../components/Axios";
+import instance from "../api/Axios";
 
 
 

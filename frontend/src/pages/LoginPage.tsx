@@ -1,12 +1,29 @@
 import { Box, padding } from '@mui/system'
-import React from 'react';
+import React, { useState } from 'react';
 import blackcar from "../assets/blackcar.svg";
 import { TextField, Typography } from '@mui/material';
 import { Bold } from 'lucide-react';
 
-
+interface LoginFormState {
+    email: string;
+    password: string;
+}
 
 const LoginPage = () => {
+
+    const [loginInfo, setLoginInfo] = useState < LoginFormState>({
+        email: '',
+        password: ''
+    })
+
+
+    const { email, password } = loginInfo;
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    // Holds a message to show the user (validation failure or API error).
+    const [error, setError] = useState<string | null>(null);
+
+
 
     return (
         <Box sx={{ display: 'flex', gap: 2, height: '100vh', bgcolor: 'primary.main', justifyContent: 'center', alignItems: 'center' }}>
